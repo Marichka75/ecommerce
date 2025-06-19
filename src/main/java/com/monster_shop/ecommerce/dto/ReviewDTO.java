@@ -10,8 +10,8 @@ public class ReviewDTO {
     private String username;
 
     @NotNull(message = "Rating cannot be null")
-    @Min(value = 1, message = "Rating must be at least 1")
-    @Max(value = 5, message = "Rating must be at most 5")
+    @DecimalMin(value = "1.0", message = "Rating must be at least 1.0")
+    @DecimalMax(value = "5.0", message = "Rating must be at most 5.0")
     private double rating;
 
     @NotBlank(message = "Body cannot be blank")
