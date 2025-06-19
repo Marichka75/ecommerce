@@ -1,6 +1,7 @@
 package com.monster_shop.ecommerce.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 
 @Entity
 @Table(name = "reviews")
@@ -9,12 +10,19 @@ public class Review {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Username cannot be blank")
+    @Size(min = 2, max = 50, message = "Username must be between 2 and 50 characters")
     @Column(nullable = false)
     private String username;
 
+    @NotNull(message = "Rating cannot be null")
+    @Min(value = 1, message = "Rating must be at least 1")
+    @Max(value = 5, message = "Rating must be at most 5")
     @Column(nullable = false)
     private double rating;
 
+    @NotBlank(message = "Body cannot be blank")
+    @Size(min = 10, max = 500, message = "Body must be between 10 and 500 characters")
     @Column(columnDefinition = "TEXT")
     private String body;
 

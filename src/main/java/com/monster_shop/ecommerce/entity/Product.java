@@ -1,6 +1,9 @@
 package com.monster_shop.ecommerce.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
+import org.hibernate.validator.constraints.URL;
+
 import java.util.List;
 
 @Entity
@@ -10,17 +13,26 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Name cannot be blank")
+    @Size(min = 2, max = 255, message = "Name must be between 2 and 255 characters")
     @Column(nullable = false)
     private String name;
 
+    @NotNull(message = "Price cannot be null")
+    @DecimalMin(value = "0.01", message = "Price must be greater than or equal to 0.01")
     @Column(nullable = false)
     private double price;
 
+    @NotBlank(message = "Image URL cannot be blank")
+    @URL(message = "Image URL must be a valid URL")
     @Column(name = "image_url")
     private String imageUrl;
 
+    @DecimalMin(value = "0.0", message = "Rating must be greater than or equal to 0.0")
+    @DecimalMax(value = "5.0", message = "Rating must be less than or equal to 5.0")
     private double rating;
 
+    @Min(value = 0, message = "Review count must be greater than or equal to 0")
     @Column(name = "review_count")
     private int reviewCount;
 

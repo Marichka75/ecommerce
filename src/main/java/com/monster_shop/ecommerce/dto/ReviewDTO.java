@@ -1,10 +1,26 @@
 package com.monster_shop.ecommerce.dto;
 
+import jakarta.validation.constraints.*;
+
 public class ReviewDTO {
     private Long id;
+
+    @NotBlank(message = "Username cannot be blank")
+    @Size(min = 2, max = 50, message = "Username must be between 2 and 50 characters")
     private String username;
+
+    @NotNull(message = "Rating cannot be null")
+    @Min(value = 1, message = "Rating must be at least 1")
+    @Max(value = 5, message = "Rating must be at most 5")
     private double rating;
+
+    @NotBlank(message = "Body cannot be blank")
+    @Size(min = 10, max = 500, message = "Body must be between 10 and 500 characters")
     private String body;
+
+    public ReviewDTO() {
+        // Required for Jackson deserialization
+    }
 
     public ReviewDTO(Long id, String username, double rating, String body) {
         this.id = id;
@@ -45,4 +61,3 @@ public class ReviewDTO {
         this.body = body;
     }
 }
-
