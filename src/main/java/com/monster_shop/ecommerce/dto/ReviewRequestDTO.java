@@ -1,24 +1,16 @@
 package com.monster_shop.ecommerce.dto;
 
-public class ReviewDTO {
-    private Long id;
+public class ReviewRequestDTO {
     private String username;
     private double rating;
     private String body;
+    private Long productId;
 
-    public ReviewDTO(Long id, String username, double rating, String body) {
-        this.id = id;
+    public ReviewRequestDTO(String username, double rating, String body, Long productId) {
         this.username = username;
         this.rating = rating;
         this.body = body;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+        this.productId = productId;
     }
 
     public String getUsername() {
@@ -43,6 +35,14 @@ public class ReviewDTO {
 
     public void setBody(String body) {
         this.body = body;
+    }
+
+    public Long getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
     }
 }
 
